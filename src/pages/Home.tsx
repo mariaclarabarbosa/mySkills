@@ -42,7 +42,10 @@ export default function Home() {
         onChangeText={setNovaSkill}
         value={novaSkill}
       />
-      <Button onPress={handleAdicionarNovaSkill} />
+      <Button 
+        title='Adicionar'
+        onPress={handleAdicionarNovaSkill}
+      />
       <Text style={[styles.title, styles.subTitle]}>Minhas Skills</Text>
       <FlatList
         data={minhasSkills}
