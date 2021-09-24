@@ -11,9 +11,9 @@ import Button from '../components/Button';
 import SkillCard from '../components/SkillCard';
 
 export default function Home() {
-  const [novaSkill, setNovaSkill] = useState('');
-  const [minhasSkills, setMinhasSkills] = useState([]);
-  const [saudacao, setSaudacao] = useState('');
+  const [novaSkill, setNovaSkill] = useState<string>('');
+  const [minhasSkills, setMinhasSkills] = useState<string[]>([]);
+  const [saudacao, setSaudacao] = useState<string>('');
 
   function handleAdicionarNovaSkill() {
     setMinhasSkills(oldState => [...oldState, novaSkill]);
@@ -40,6 +40,7 @@ export default function Home() {
         placeholder='Nova Skill'
         placeholderTextColor='#555'
         onChangeText={setNovaSkill}
+        value={novaSkill}
       />
       <Button onPress={handleAdicionarNovaSkill} />
       <Text style={[styles.title, styles.subTitle]}>Minhas Skills</Text>
