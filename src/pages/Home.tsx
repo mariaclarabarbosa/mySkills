@@ -10,14 +10,29 @@ import {
 import Button from '../components/Button';
 import SkillCard from '../components/SkillCard';
 
+interface SkillData {
+  id: string;
+  name: string;
+}
+
 export default function Home() {
   const [novaSkill, setNovaSkill] = useState<string>('');
-  const [minhasSkills, setMinhasSkills] = useState<string[]>([]);
+  const [minhasSkills, setMinhasSkills] = useState<SkillData[]>([]);
   const [saudacao, setSaudacao] = useState<string>('');
 
   function handleAdicionarNovaSkill() {
-    setMinhasSkills(oldState => [...oldState, novaSkill]);
+    const skillData = {
+      id: String(new Date().getTime()),
+      name: novaSkill,
+    };
+    setMinhasSkills(oldState => [...oldState, skillData]);
     setNovaSkill('');
+  }
+
+  function handleDeletarSkill(id: string){
+    setMinhasSkills(oldState => oldState.filter(
+      skill => skill.id !== id
+    ));
   }
 
   useEffect(() => {
@@ -50,9 +65,12 @@ export default function Home() {
       <FlatList
         data={minhasSkills}
         renderItem={({ item }) => (
-          <SkillCard skill={item} />
+          <SkillCard 
+            skill={item.name} 
+            onPress={() => handleDeletarSkill(item.id)}
+          />
         )}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
       />
     </View>
