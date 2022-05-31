@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem-Vinda</Text>
+      <Text style={styles.title} testID="welcome">Bem-Vinda</Text>
       <Text style={styles.gretting}>{saudacao}</Text>
       <TextInput
         style={styles.input}
@@ -56,13 +56,16 @@ export default function Home() {
         placeholderTextColor='#555'
         onChangeText={setNovaSkill}
         value={novaSkill}
+        testID="input-new"
       />
       <Button 
+        testID='button-add'
         title='Adicionar'
         onPress={handleAdicionarNovaSkill}
       />
       <Text style={[styles.title, styles.subTitle]}>Minhas Skills</Text>
       <FlatList
+        testID='flat-list-skills'
         data={minhasSkills}
         renderItem={({ item }) => (
           <SkillCard 
